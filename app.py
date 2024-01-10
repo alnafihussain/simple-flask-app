@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 @app.get("/")
 def main():
-    return jsonify(app="flask", msg="Hello World!!!!")
+    return jsonify(app="flask", msg="Hello World!")
