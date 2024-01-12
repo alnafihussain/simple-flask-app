@@ -1,0 +1,15 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_USER: /flask-app/docker/user
+    DOCKER_PASSWORD: /flask-app/docker/password
+phases:
+  build:
+    commands:
+      - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+      - docker build -t $DOCKER_USER/flask-app .
+      - docker push $DOCKER_USER/flask-app
+  post_build:
+    commands:
+      - echo "Image has been pushed successfully!"
